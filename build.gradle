@@ -19,7 +19,7 @@ plugins {
 }
 
 
-group = 'org.example'
+group = 'com.basak.book'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -34,6 +34,19 @@ dependencies {
     // JUnit 의존성
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // lombok plugin
+    implementation('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+
+    // lombok test 환경
+    testImplementation('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 
