@@ -2,6 +2,7 @@ package com.basak.book.springboot.domain.posts;
 
 import org.junit.jupiter.api.AfterEach; // <- import org.junit.After;
 import org.junit.jupiter.api.Test;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.extension.ExtendWith; // <- import org.junit.runner.Runwith;
 import org.springframework.test.context.junit.jupiter.SpringExtension; // <- import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,27 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
+    }
+
+    @Test
+    public void BaseTimeEntity_등록() {
+        //given
+        LocalDateTime now = LocalDateTime.of(2024, 10, 22, 0, 0, 0);
+        postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
+
+        // when
+        List<Posts> postsList = postsRepository.findAll();
+
+        // then
+        Posts posts = postsList.get(0);
+
+        System.out.println(">>>>>>>>> createDate=" + posts.getCreatedDate() + ", modifiedDate=" + posts.getModifiedDate());
+
+        assertThat(posts.getCreatedDate()).isAfter(now);
+        assertThat(posts.getModifiedDate()).isAfter(now);
     }
 }
