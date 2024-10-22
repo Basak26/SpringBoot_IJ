@@ -48,6 +48,7 @@ dependencies {
 
     // H2 라이브러리 의존성
     implementation('com.h2database:h2')
+    runtimeOnly("com.h2database:h2")
 
     // SQL 의존성
     implementation('mysql:mysql-connector-java:8.0.32')
