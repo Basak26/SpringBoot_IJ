@@ -52,6 +52,17 @@ dependencies {
 
     // SQL 의존성
     implementation('mysql:mysql-connector-java:8.0.32')
+
+    // mustache 의존성
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
+
+    // 한국어 인식
+    compileJava.options.encoding = 'UTF-8'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
 }
 
 java {
